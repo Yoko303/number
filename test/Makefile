@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -g -Wall
-SRC_DIR = src
-INC_DIR = inc
-TEST_DIR = test
+SRC_DIR = ../src
+INC_DIR = ../inc
+TEST_DIR = .
 
 INCS += -I/usr/local/include
 LIBS += -L/usr/local/lib -lpthread -lgtest_main -lgtest

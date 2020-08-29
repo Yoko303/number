@@ -102,32 +102,18 @@ TEST(Bigger, _) {
     EXPECT_TRUE(a < b);
 }
 
-TEST(Add, Random1) {
-    fraction<int> a(1249, 62);
-    fraction<int> b(1763, 198);
-    fraction<int> c(89152, 3069);
-    EXPECT_TRUE(a + b == c);
-}
-
-TEST(Add, Random2) {
-    fraction<int> a(1249, 62);
-    fraction<int> b(-1763, 198);
-    fraction<int> c(34499, 3069);
-    EXPECT_TRUE(a + b == c);
-}
-
-TEST(Add, Random3) {
-    fraction<int> a(-1249, 62);
-    fraction<int> b(1763, 198);
-    fraction<int> c(-34499, 3069);
-    EXPECT_TRUE(a + b == c);
-}
-
-TEST(Add, Random4) {
-    fraction<int> a(-1249, 62);
-    fraction<int> b(-1763, 198);
-    fraction<int> c(-89152, 3069);
-    EXPECT_TRUE(a + b == c);
+TEST(Add, Random) {
+    ifstream ifs("case_fraction/add.txt", ios::in);
+    string s;
+    while(getline(ifs, s)) {
+        istringstream iss(s);
+        int an, ad, bn, bd, cn, cd;
+        iss >> an >> ad >> bn >> bd >> cn >> cd;
+        fraction<int> a(an, ad);
+        fraction<int> b(bn, bd);
+        fraction<int> c(cn, cd);
+        EXPECT_TRUE(a + b == c);
+    }
 }
 
 TEST(Add, Self) {
@@ -138,10 +124,17 @@ TEST(Add, Self) {
 }
 
 TEST(Sub, Random) {
-    fraction<int> a(1249, 62);
-    fraction<int> b(1763, 198);
-    fraction<int> c(34499, 3069);
-    EXPECT_TRUE(a - b == c);
+    ifstream ifs("case_fraction/sub.txt", ios::in);
+    string s;
+    while(getline(ifs, s)) {
+        istringstream iss(s);
+        int an, ad, bn, bd, cn, cd;
+        iss >> an >> ad >> bn >> bd >> cn >> cd;
+        fraction<int> a(an, ad);
+        fraction<int> b(bn, bd);
+        fraction<int> c(cn, cd);
+        EXPECT_TRUE(a - b == c);
+    }
 }
 
 TEST(Sub, Self) {
@@ -152,19 +145,45 @@ TEST(Sub, Self) {
 }
 
 TEST(Multi, Random) {
-    fraction<int> a(-2, 5);
-    fraction<int> b(3, 5);
-    fraction<int> c(-6, 25);
-    EXPECT_TRUE(a * b == c);
+    ifstream ifs("case_fraction/multi.txt", ios::in);
+    string s;
+    while(getline(ifs, s)) {
+        istringstream iss(s);
+        int an, ad, bn, bd, cn, cd;
+        iss >> an >> ad >> bn >> bd >> cn >> cd;
+        fraction<int> a(an, ad);
+        fraction<int> b(bn, bd);
+        fraction<int> c(cn, cd);
+        EXPECT_TRUE(a * b == c);
+    }
 }
 
-TEST(Test, Random) {
-    fraction<int> a(1);
-    fraction<int> b(1);
-    fraction<int> c(0);
-    fraction<int> d(-4);
-    fraction<int> e = a*b;
-    fraction<int> g = c*d;
+TEST(Multi, Self) {
+    fraction<int> a(2, 5);
+    a *= a;
+    fraction<int> b(4, 25);
+    EXPECT_TRUE(a == b);
+}
+
+TEST(Div, Random) {
+    ifstream ifs("case_fraction/div.txt", ios::in);
+    string s;
+    while(getline(ifs, s)) {
+        istringstream iss(s);
+        int an, ad, bn, bd, cn, cd;
+        iss >> an >> ad >> bn >> bd >> cn >> cd;
+        fraction<int> a(an, ad);
+        fraction<int> b(bn, bd);
+        fraction<int> c(cn, cd);
+        EXPECT_TRUE(a / b == c);
+    }
+}
+
+TEST(Div, Self) {
+    fraction<int> a(2, 5);
+    a /= a;
+    fraction<int> b(1, 1);
+    EXPECT_TRUE(a == b);
 }
 
 } // namespace
