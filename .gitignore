@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+gtest_bign
+gtest_fraction
+gtest_sqrtn
